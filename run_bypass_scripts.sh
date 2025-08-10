@@ -52,6 +52,10 @@ for i in "${!scriptFiles[@]}"; do
     echo "Running $scriptCurr/$scriptCount"
     echo "Running Frida script: $scriptPath on app: $targetApp"
     frida $fridaOption -f "$targetApp" -l "$scriptPath"
+    read -p "Did the script successfully bypass? (yes/y or no/n): " isBypassed
+    if [[ "$isBypassed" == "yes" || "$isBypassed" == "y" ]]; then
+        echo "Script successfully bypassed"
+        exit 0
     read -p "Press Enter to continue to the next script..."
 done
 

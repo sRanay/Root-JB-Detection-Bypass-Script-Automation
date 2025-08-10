@@ -66,7 +66,18 @@ for /L %%i in (0,1,!end!) do (
     echo Running Frida script: !scriptPath! on app: %targetApp%
     frida %fridaOption% -f %targetApp% -l "!scriptPath!"
     pause
+    set /p isScriptWorked="Did the script worked? (yes/y or no/n): "
+    if /I "%isScriptWorked%" EQU "yes" (
+        goto :FinishedMidWay
+    ) 
+    if /I "%isScriptWorked%" EQU "y" (
+        goto :FinishedMidWay
+    )
 )
 
 echo All scripts have been executed.
+pause
+
+:FinishedMidWay
+echo Script successfully bypassed
 pause
